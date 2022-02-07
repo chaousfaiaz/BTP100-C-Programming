@@ -1,12 +1,63 @@
 *****************************************************************************
-                               Reflection
+                              Reflection
                              Workshop - #4
-Full Name  : 
-Student ID#: 
+Full Name  : MD Faiaz
+Student ID#: 164899213
+Email      : mfaiaz@myseneca.ca
+Section    : NBB
 
 Authenticity Declaration:
 I declare this submission is the result of my own work and has not been
 shared with any other student or 3rd party content provider. This submitted
 piece of work is entirely of my own creation.
 *****************************************************************************
+1) Selection is an extremely important concept because we must select data 
+The C language supports three selection constructs:i) optional path
+ii) alternative paths iii) conditional expression
+and it's usage in the program depending on the output that is desired. For example, 
+ if(apple <= 0) {
+                printf("ERROR: You must pick at least 1! \n");
+            } else if (apple > apple_remaining) {
+                printf("You picked too many... only %d more APPLE(S) are needed.\n", apple_remaining);
+            } else {
+                apple_remaining = apple_remaining - apple;
+                if (apple_remaining != 0) {
+                printf("Looks like we still need some APPLES...\n");
+                }
+some other examples are 
+if (needed != 0) {
+        int orange, orange_remaining = needed;
+        do {
+            printf("Pick some ORANGES... how many did you pick? : ");
+            scanf("%d", &orange);
+while(orange_remaining != 0);
+These codes are selecting data based on input and running a loop until the satisfactory result is achieved.
+I am selecting values based on the variables input from the compiler to get the desired output.
 
+2)  Nested constructs interacts with the instance members of its outer class (and other classes).
+ In effect, a static nested class is behaviorally a top-level class that has been nested in another 
+top-level class for packaging convenience.The logic can easily be understood by a non-technical person 
+as the key words such as if, else, do, while are easily understandable and the conditions they represent 
+This is an example of a nested construct.
+
+if(apple <= 0) {
+                printf("ERROR: You must pick at least 1! \n");
+            } else if (apple > apple_remaining) {
+                printf("You picked too many... only %d more APPLE(S) are needed.\n", apple_remaining);
+            } 
+
+Snother nested construct is 
+do {
+     for(value = 1; value < orange_renmaining; 
+            printf("Pick some ORANGES... how many did you pick? : ");
+            scanf("%d", &orange);
+while(orange_remaining != 0);
+
+3) Iteration constructs represent repetition of the same set of instructions until a specified condition 
+has been met.The simplest example of a structured construct is a sequence.  A sequence is either a simple
+ statement or a code block. My favourite iteration construct uses a do-while loop to iterate through the body 
+until a certain set of instructions are executed.
+do {
+            printf("Pick some ORANGES... how many did you pick? : ");
+            scanf("%d", &orange);
+while(orange_remaining != 0);
