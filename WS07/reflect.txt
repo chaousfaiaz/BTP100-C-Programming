@@ -1,0 +1,108 @@
+*****************************************************************************
+                              Reflection
+                             Workshop - #7
+Full Name  : MD Faiaz
+Student ID#: 164899213
+Email      : mfaiaz@myseneca.ca
+Section    : NBB
+
+Authenticity Declaration:
+I declare this submission is the result of my own work and has not been
+shared with any other student or 3rd party content provider. This submitted
+piece of work is entirely of my own creation.
+*****************************************************************************
+1) User defined functions allows reusability of code anywhere within the body of the program. 
+Struct is a similar data structure that stores all the possible variables assoicated with a data type 
+other than int or double that represents objects and this enables me to re use and call for 
+reference to values and store them when I create an object for that type of data and call functions to 
+build program.
+ 
+struct PlayerInfo {
+    char character_symbol;
+    int character_lives;      
+    int treasure_count;
+    char history[MAX_PATH_LENGTH];
+};
+for(i = 0; i < game.path_length; ++i) { player.history[i] = '-'; }
+   
+    int move;
+    int player_turn = game.max_moves;
+   
+    do {
+       
+        if (player_turn != game.max_moves) { // Line-1 of Board, for every turn after the first
+            printf("  ");
+            for (i = 1; i <= game.path_length; ++i) {
+                if (i == move) { // place character symbol in last entered position
+                    printf("%c", player.character_symbol);
+                } else {
+                    printf(" ");
+                }
+            }
+            printf("\n");
+        }
+       
+        printf("  ");
+        for (i = 0; i < game.path_length; ++i) { // Line-2 of Board
+            printf("%c", player.history[i]);
+        }
+        printf("\n  ");
+        for (i = 1; i <= game.path_length; ++i) { // Line-3 of Board
+            if (i % 10 == 0) {
+                printf("%d", i / 10);
+            } else {
+                printf("|");
+            }
+        }
+        printf("\n  ");
+        for (i = 1; i <= game.path_length; ++i) { // Line-4 of Board
+            printf("%d", i % 10);
+        }
+        printf("\n");
+       
+ //In this code I am using Data value of Player Info when I create a player object and using arrays 
+//within the struct store or call reference to those values when needede.
+                
+
+
+2) Array indexing begins at 1 rather than 0 so in order to match the positioning of the array index 
+we let the iterating variable be initialized to 0.  Create a change in do while loop to prompt user 
+to play again or not and then create a struct that stores infgormation about that game such as 
+treasure count, number of lives, number of moves left, the path length left, the series of bombs or 
+treasures and can be stored in members of a struct. Everytime the game is played the struct stores 
+information for that game and it can be stored in an array of struct like game 1, game 2 and so on.
+ 
+
+
+3) The part of the workshop that I needed most time to figure out was in part 2 on how to arrange 
+and assign the values of the output. There are multiple values within the struct and depending on how I had to retreive the player info like path 
+length or the treasure saved I had to iterate it though the array from the struct.example 
+int move;
+    int player_turn = game.max_moves;
+   
+    do {
+       
+        if (player_turn != game.max_moves) { // Line-1 of Board, for every turn after the first
+            printf("  ");
+            for (i = 1; i <= game.path_length; ++i) {
+                if (i == move) { // place character symbol in last entered position
+                    printf("%c", player.character_symbol);
+                } else {
+                    printf(" ");
+                }
+            }
+            printf("\n");
+        }
+       
+        printf("  ");
+        for (i = 0; i < game.path_length; ++i) { // Line-2 of Board
+            printf("%c", player.history[i]);
+        }
+        printf("\n  ");
+        for (i = 1; i <= game.path_length; ++i) { // Line-3 of Board
+            if (i % 10 == 0) {
+                printf("%d", i / 10);
+            } else {
+                printf("|");
+            }
+        }
