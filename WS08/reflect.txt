@@ -1,0 +1,86 @@
+*****************************************************************************
+                              Reflection
+                             Workshop - #8
+Full Name  : MD Faiaz
+Student ID#: 164899213
+Email      : mfaiaz@myseneca.ca
+Section    : NBB
+
+Authenticity Declaration:
+I declare this submission is the result of my own work and has not been
+shared with any other student or 3rd party content provider. This submitted
+piece of work is entirely of my own creation.
+*****************************************************************************
+1) Report data has 9 components so each component depedding ont he data type 
+allocates memory so int would allocate 4 bytes where as double would allocate 
+8 bytes and thus together I had 3 int and 6 double so 3(4)+6(8) = 60bytes.
+A pointer reference takes only 2 bytes 2 store the same amount of memory so
+it's better to use pointers to save memory and allocate placeholders for memory.
+
+2) In terms of memory usage since they both use the same members for 
+price weight calorie etc. They can be brought together in printf statements and written altogether
+Before:----
+//  Derive a reporting detail record based on the cat food product data
+struct ReportData calculateReportData(const struct CatFoodInfo product) {
+    struct ReportData temp;
+    temp.sku = product.identifier;
+    temp.price = product.price;
+    temp.calories_per_serving = product.calories;
+    temp.weight_lbs = product.weight; // convertLbs(&temp.weight_lbs, &temp.weight_kg, &temp.weight_g);
+    temp.weight_kg = convertLbsKg(&temp.weight_lbs, NULL);
+    temp.weight_g = convertLbsG(&temp.weight_lbs, NULL);
+    temp.servings = calculateServings(SUGGESTED_SERVING, temp.weight_g, &temp.servings);
+    temp.cost_per_serving = calculateCostPerServing(&temp.price, &temp.servings, NULL);
+    double total_calories = temp.calories_per_serving * temp.servings;
+    temp.cost_per_cal = calculateCostPerCal(&temp.price, &total_calories, NULL);
+    return temp;
+ Display the formatted table header for the analysis results
+void displayReportHeader(void) {
+	printf("Analysis Report (Note: Serving = %dg)\n", SUGGESTED_SERVING);
+	printf("---------------\n");
+	printf("SKU         $Price    Bag-lbs     Bag-kg     Bag-g Cal/Serv Servings  $/Serv   $/Cal\n");
+	printf("------- ---------- ---------- ---------- --------- -------- -------- ------- -------\n");
+}
+void displayReportData(const struct ReportData report, const int cheapest) {
+    printf("%07d %10.2lf %10.1lf %10.4lf %9d %8d %8.1lf %7.2lf %7.5lf", 
+    report.sku, report.price, report.weight_lbs, report.weight_kg, report.weight_g, 
+    report.calories_per_serving, report.servings, report.cost_per_serving, report.cost_per_cal);
+    if (cheapest) {
+        printf(" ***\n");
+    } else {
+        printf("\n");
+    }
+}
+After:----
+//  Derive a reporting detail record based on the cat food product data
+struct ReportData calculateReportData(const struct CatFoodInfo product) {
+    struct ReportData temp;
+    temp.sku = product.identifier;
+    temp.price = product.price;
+    temp.calories_per_serving = product.calories;
+    temp.weight_lbs = product.weight; // convertLbs(&temp.weight_lbs, &temp.weight_kg, &temp.weight_g);
+    temp.weight_kg = convertLbsKg(&temp.weight_lbs, NULL);
+    temp.weight_g = convertLbsG(&temp.weight_lbs, NULL);
+    temp.servings = calculateServings(SUGGESTED_SERVING, temp.weight_g, &temp.servings);
+    temp.cost_per_serving = calculateCostPerServing(&temp.price, &temp.servings, NULL);
+    double total_calories = temp.calories_per_serving * temp.servings;
+    temp.cost_per_cal = calculateCostPerCal(&temp.price, &total_calories, NULL);
+    return temp;
+ Display the formatted table header for the analysis results
+void displayReportHeader(void) {
+	printf("Analysis Report (Note: Serving = %dg)\n", SUGGESTED_SERVING);
+	printf("---------------\n");
+	printf("SKU         $Price    Bag-lbs     Bag-kg     Bag-g Cal/Serv Servings  $/Serv   $/Cal\n");
+	printf("------- ---------- ---------- ---------- --------- -------- -------- ------- -------\n");
+}
+void displayReportData(const struct ReportData report, const int cheapest) {
+    printf("%07d %10.2lf %10.1lf %10.4lf %9d %8d %8.1lf %7.2lf %7.5lf", 
+    report.sku, report.price, report.weight_lbs, report.weight_kg, report.weight_g, 
+    report.calories_per_serving, report.servings, report.cost_per_serving, report.cost_per_cal);
+    if (cheapest) {
+        printf(" ***\n");
+    } else {
+        printf("\n");
+    }
+I would modify the display report data so that the variables are printed accordingly with the least amount of memory leaks.
+without the overuse of data from members. 
